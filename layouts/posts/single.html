@@ -2,41 +2,57 @@
 
   <div id="content" class="mb-[225px] mt-6">
     <!-- BEGIN Article -->
-    <article class="max-w-[630px] mx-auto">
-        <!-- BEGIN Thumbnail -->
-        {{- if .Params.thumbnail }}
-          <div class="relative mb-6 w-full pb-[58%]">
-            <img
-              class="absolute inset-0 z-0 h-full w-full object-cover"
-              src="/assets/images/{{ .Params.thumbnail }}"
-              alt="{{ .Title }}"
-            />
-          </div>
-        {{- end }}
-        <!-- EOL Thumbnail -->
-          <h1 class="mb-3.5 text-4xl font-medium leading-8">
-              Headling Article Post 1
-          </h1>
-          <div class="font-helvetica">
-            <span class="text-secondary">Posted by:</span>
-            <span>{{ site.Params.author }}</span>
-            -
-            <span class="text-secondary">{{ .Date | time.Format ":date_long" }}</span>
-          </div>
-          <div class="leading-relaxed my-9 font-helvetica text-dark">
-            {{ .Content | safeHTML }}
-          </div>
-    <!-- BEGIN Tags -->
-    <div class="flex flex-wrap gap-6">
-    {{- range $name := .Params.tags }}
-        <a href="/tags/{{ lower $name }}" class="bg-dark text-white font-helvetica px-3.5 py-2 flex justify-center content-center inline-block min-h-[40px]">
+    <article class="mx-auto max-w-[630px]">
+      <!-- BEGIN Thumbnail / Youtube Player -->
+      {{- if .Params.youtube_url }}
+        <div class="flex h-auto w-full content-center justify-center">
+          <iframe
+            class="mb-8"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/{{ index (last 1 (split .Params.youtube_url "/")) 0 }}"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      {{- else if .Params.thumbnail }}
+        <div class="relative mb-6 w-full pb-[58%]">
+          <img
+            class="absolute inset-0 z-0 h-full w-full object-cover"
+            src="/assets/images/{{ .Params.thumbnail }}"
+            alt="{{ .Title }}"
+          />
+        </div>
+      {{- end }}
+      <h1 class="mb-3.5 text-4xl font-medium leading-8">
+        Headling Article Post 1
+      </h1>
+      <div class="font-helvetica">
+        <span class="text-secondary">Posted by:</span>
+        <span>{{ site.Params.author }}</span>
+        -
+        <span class="text-secondary"
+          >{{ .Date | time.Format ":date_long" }}</span
+        >
+      </div>
+      <div class="my-9 font-helvetica leading-relaxed text-dark">
+        {{ .Content | safeHTML }}
+      </div>
+      <!-- BEGIN Tags -->
+      <div class="flex flex-wrap gap-6">
+        {{- range $name := .Params.tags }}
+          <a
+            href="/tags/{{ lower $name }}"
+            class="inline-block flex min-h-[40px] content-center justify-center bg-dark px-3.5 py-2 font-helvetica text-white"
+          >
             {{ $name }}
-        </a>
-    {{ end -}}
-    </div>
-    <!-- EOL Tags -->
+          </a>
+        {{ end -}}
+      </div>
+      <!-- EOL Tags -->
     </article>
     <!-- EOL Article -->
   </div>
-
 {{ end -}}

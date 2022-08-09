@@ -1,7 +1,7 @@
 ---
 title: "Markdown Basic"
 date: 2022-05-01T20:58:32+07:00
-draft: true
+draft: false
 seo_description: "Learn Hugo markdown basic"
 seo_keyword:
   - Hugo markdown
