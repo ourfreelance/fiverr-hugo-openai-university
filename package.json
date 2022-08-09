@@ -1,0 +1,24 @@
+{
+  "name": "openai-university-website",
+  "version": "1.0.1",
+  "description": "openai university website description",
+  "scripts": {
+    "dev": "hugo server --path-warnings --ignoreCache --disableFastRender --renderToDisk --cleanDestinationDir",
+    "watch": "npx tailwindcss -i ./tailwind.css -o ./static/assets/css/styles.css --watch --minify"
+  },
+  "keywords": [
+    "website"
+  ],
+  "author": "openai university",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-go-template": "^0.0.13",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "tailwindcss": "^3.1.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.3"
+  }
+}

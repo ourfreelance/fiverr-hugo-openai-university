@@ -1,0 +1,35 @@
+{{- define "main" -}}
+
+  <div id="content" class="my-8 mb-[225px] px-5 lg:px-2">
+    <h3 class="mb-8 text-2xl font-medium leading-7">
+      {{ .Title }}
+    </h3>
+    <div>
+      {{ $counter := 0 }}
+      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        {{ $counter = add $counter 1 }}
+        <div class="mb-8 border-b border-secondary pb-8">
+          <div class="font-helvetica">
+            <div class="text-bold mb-4 text-2xl">
+              {{ $counter }}.
+              <a href="/tags/{{ $name | urlize }}">{{ $name | humanize }}</a>
+              [{{ $taxonomy.Count }}]
+            </div>
+            <ol>
+              {{ range $taxonomy }}
+                <li>
+                  <small>{{ .Date.Format "02/01/2006" }}</small>
+                  <a
+                    class="font-medium text-blue-600 hover:text-red-600"
+                    href="{{ .Permalink }}"
+                    >{{ .Title }}</a
+                  >
+                </li>
+              {{ end }}
+            </ol>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

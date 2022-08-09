@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Post</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" media="all" />
+    <link
+      rel="stylesheet"
+      href="../assets/fonts/colfax/colfax.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/fonts/helvetica/helvetica.css"
+      media="screen"
+    />
+  </head>
+  <!-- alpine js -->
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <body>
+    <div class="wrapper">
+      <!-- BEGIN Header -->
+      <header>
+        <!-- BEGIN Desktop Navbar -->
+        <div
+          class="relative hidden flex-col content-center justify-center border-b border-secondary pb-6 lg:flex"
+        >
+          <div id="logo" class="mt-6 mb-8 flex justify-center">
+            <a href="#">
+              <img
+                class="h-full w-full"
+                src="../assets/images/logo.png"
+                alt="logo"
+              />
+            </a>
+          </div>
+          <nav>
+            <ul class="justify-center gap-9 font-helvetica leading-5 lg:flex">
+              <li>
+                <a href="#"> News </a>
+              </li>
+              <li>
+                <a href="#"> Workshop </a>
+              </li>
+              <li>
+                <a href="#"> Podcast </a>
+              </li>
+              <li>
+                <a href="#"> About </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="absolute right-0 top-0 mt-7 hidden gap-6 lg:flex">
+            <a href="#" title="twitter">
+              <img
+                class="h-full w-full scale-125"
+                src="../assets/images/icons/carbon_logo-twitter.svg"
+                alt="twitter"
+              />
+            </a>
+            <a href="#" title="youtube">
+              <img
+                class="h-full w-full scale-125"
+                src="../assets/images/icons/carbon_logo-youtube.svg"
+                alt="youtube"
+              />
+            </a>
+          </div>
+        </div>
+        <!-- EOL Desktop Navbar -->
+        <!-- BEGIN Mobile Navbar -->
+        <div class="block lg:hidden" x-data="{ menuOpen: false }">
+          <div
+            class="mx-5 mt-4 flex content-center justify-between lg:hidden"
+            :class="!menuOpen && 'border-b border-secondary'"
+          >
+            <div id="logo" class="mt-2">
+              <a href="#">
+                <img
+                  class="h-[22px] w-[118px]"
+                  src="../assets/images/logo.png"
+                  alt="logo"
+                />
+              </a>
+            </div>
+            <div class="mb-4">
+              <button
+                class="flex h-[34px] w-[37px] cursor-pointer content-center justify-center bg-dark p-[5px] outline-none"
+                @click="menuOpen = !menuOpen"
+              >
+                <img
+                  class="h-full w-full scale-125"
+                  src="../assets/images/icons/eva_menu-fill.svg"
+                  alt="menu"
+                />
+              </button>
+            </div>
+          </div>
+          <div
+            class="transition-height bg-dark text-white duration-700"
+            :class="menuOpen ? 'h-[240px] overflow-y-scroll py-4' : 'h-[0px] overflow-hidden '"
+          >
+            <ul class="flex flex-col gap-4 font-helvetica">
+              <li class="text-center"><a href="#">News</a></li>
+              <li class="text-center"><a href="#">Workshop</a></li>
+              <li class="text-center"><a href="#">Podcast</a></li>
+              <li class="text-center"><a href="#">About</a></li>
+              <li class="flex justify-center gap-6">
+                <a href="#" title="twitter">
+                  <img
+                    class="h-full w-full scale-125"
+                    src="../assets/images/icons/carbon_logo-twitter_mobile.svg"
+                    alt="twitter"
+                  />
+                </a>
+                <a href="#" title="youtube">
+                  <img
+                    class="h-full w-full scale-125"
+                    src="../assets/images/icons/carbon_logo-youtube_mobile.svg"
+                    alt="youtube"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- EOL Mobile Navbar -->
+      </header>
+      <!-- EOL Header -->
+      <div id="content" class="mb-[225px] mt-6">
+        <!-- BEGIN Article -->
+        <article class="max-w-[630px] mx-auto">
+            <!-- BEGIN Thumbnail -->
+              <div class="relative mb-6 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+            <!-- EOL Thumbnail -->
+              <h1 class="mb-3.5 text-4xl font-medium leading-8">
+                  Headling Article Post 1
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+                -
+                <span class="text-secondary">August 2, 2022</span>
+              </div>
+              <div class="leading-relaxed my-9 font-helvetica text-dark">
+                  <p>
+Sit iure magnam nihil saepe animi eius, repellat Velit debitis facere soluta sint qui. Voluptatum blanditiis dicta deserunt possimus quo ipsam itaque. Minima earum natus cumque distinctio assumenda Tempore animi?
+                  </p>
+                  <p>
+Dolor soluta recusandae exercitationem hic quae Quod ea vel eligendi in perferendis, voluptas odit Rerum ex tempore in qui saepe. Voluptate modi enim est similique reprehenderit corrupti Inventore ex quam ea fugiat vitae iste magnam quaerat Ex amet saepe voluptate esse aperiam, modi. Tenetur similique consectetur cupiditate tempore ex non fugiat ducimus fugit! Nobis quis illum dolor nobis deserunt! Voluptates provident assumenda maiores mollitia illo odio! Earum cum voluptatum dolorem!
+                  </p>
+                  <p>
+Elit dignissimos necessitatibus quos odio deleniti doloremque Veritatis possimus neque odit dolor et. Aliquam ipsam nesciunt voluptas rem commodi. Accusantium.
+                  </p>
+                  <h1>
+                      Heading #1
+                  </h1>
+                  <h2>
+                      Heading #2
+                  </h2>
+                  <h3>
+                      Heading #3
+                  </h3>
+                  <h4>
+                      Heading #4
+                  </h4>
+                  <h5>
+                      Heading #5
+                  </h5>
+                  <h6>
+                      Heading #6
+                  </h6>
+
+                  <p>
+                  <ul>
+                    <li>Amet voluptatum ratione labore quo magnam.</li>
+                    <li>Lorem quidem libero ex quia ipsa Sint consequatur
+                        itaque veritatis numquam facere pariatur.</li>
+                    <li>Sit similique fugit velit sapiente hic. Nesciunt
+                        aperiam ratione</li>
+                    <li>Elit suscipit itaque doloremque eos quis, ea Commodi
+                        eius praesentium quaerat consequuntur repudiandae Nobis
+                        delectus soluta unde maiores.</li>
+                    <li>Ipsum in asperiores a delectus</li>
+                  </ul>
+                  </p>
+
+                  <p>
+                  <ol>
+                    <li>Amet voluptatum ratione labore quo magnam.</li>
+                    <li>Lorem quidem libero ex quia ipsa Sint consequatur
+                        itaque veritatis numquam facere pariatur.</li>
+                    <li>Sit similique fugit velit sapiente hic. Nesciunt
+                        aperiam ratione</li>
+                    <li>Elit suscipit itaque doloremque eos quis, ea Commodi
+                        eius praesentium quaerat consequuntur repudiandae Nobis
+                        delectus soluta unde maiores.</li>
+                    <li>Ipsum in asperiores a delectus</li>
+                  </ol>
+                  </p>
+              </div>
+        <!-- BEGIN Tags -->
+        <div class="flex flex-wrap gap-6">
+            <a href="#" class="bg-dark text-white font-helvetica px-3.5 py-2 flex justify-center content-center inline-block min-h-[40px]">
+                News
+            </a>
+            <a href="#" class="bg-dark text-white font-helvetica px-3.5 py-2 flex justify-center content-center inline-block min-h-[40px]">
+                Technology
+            </a>
+        </div>
+        <!-- EOL Tags -->
+        </article>
+        <!-- EOL Article -->
+      </div>
+      <!-- BEGIN Footer -->
+      <footer class="mb-[55px]">
+        <div
+          class="mx-auto flex w-full max-w-[320px] flex-col content-center justify-center"
+        >
+          <div
+            class="mb-[20px] flex content-center justify-between font-medium"
+          >
+            <a href="#"> Disclaimer </a>
+            <a href="#"> Privacy Policy </a>
+            <a href="#"> Contact </a>
+          </div>
+          <div class="flex content-center justify-center">
+            <span>
+              <img
+                class="align-base mr-2 inline-block"
+                src="../assets/images/copyright.svg"
+                alt="copyright"
+              />
+              Copyright 2022 - OpenAI</span
+            >
+          </div>
+        </div>
+      </footer>
+      <!-- EOL Footer -->
+    </div>
+    <script>
+      const btnMenu = document.querySelector("#mobile-menu-btn")
+      const mobileMenu = document.querySelector("#mobile-menu")
+
+      btnMenu.addEventListener("click", () => {
+        mobileMenu.classList.toggle("h-0")
+        mobileMenu.classList.toggle("max-h-0")
+        mobileMenu.classList.toggle("h-auto")
+        mobileMenu.classList.toggle("max-h-auto")
+      })
+    </script>
+  </body>
+</html>

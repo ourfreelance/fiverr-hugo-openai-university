@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" media="all" />
+    <link
+      rel="stylesheet"
+      href="../assets/fonts/colfax/colfax.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/fonts/helvetica/helvetica.css"
+      media="screen"
+    />
+  </head>
+  <!-- alpine js -->
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <body>
+    <div class="wrapper">
+      <!-- BEGIN Header -->
+      <header>
+        <!-- BEGIN Desktop Navbar -->
+        <div
+          class="relative hidden flex-col content-center justify-center border-b border-secondary pb-6 lg:flex"
+        >
+          <div id="logo" class="mt-6 mb-8 flex justify-center">
+            <a href="#">
+              <img
+                class="h-full w-full"
+                src="../assets/images/logo.png"
+                alt="logo"
+              />
+            </a>
+          </div>
+          <nav>
+            <ul class="justify-center gap-9 font-helvetica leading-5 lg:flex">
+              <li>
+                <a href="#"> News </a>
+              </li>
+              <li>
+                <a href="#"> Workshop </a>
+              </li>
+              <li>
+                <a href="#"> Podcast </a>
+              </li>
+              <li>
+                <a href="#"> About </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="absolute right-0 top-0 mt-7 hidden gap-6 lg:flex">
+            <a href="#" title="twitter">
+              <img
+                class="h-full w-full scale-125"
+                src="../assets/images/icons/carbon_logo-twitter.svg"
+                alt="twitter"
+              />
+            </a>
+            <a href="#" title="youtube">
+              <img
+                class="h-full w-full scale-125"
+                src="../assets/images/icons/carbon_logo-youtube.svg"
+                alt="youtube"
+              />
+            </a>
+          </div>
+        </div>
+        <!-- EOL Desktop Navbar -->
+        <!-- BEGIN Mobile Navbar -->
+        <div class="block lg:hidden" x-data="{ menuOpen: false }">
+          <div
+            class="mx-5 mt-4 flex content-center justify-between lg:hidden"
+            :class="!menuOpen && 'border-b border-secondary'"
+          >
+            <div id="logo" class="mt-2">
+              <a href="#">
+                <img
+                  class="h-[22px] w-[118px]"
+                  src="../assets/images/logo.png"
+                  alt="logo"
+                />
+              </a>
+            </div>
+            <div class="mb-4">
+              <button
+                class="flex h-[34px] w-[37px] cursor-pointer content-center justify-center bg-dark p-[5px] outline-none"
+                @click="menuOpen = !menuOpen"
+              >
+                <img
+                  class="h-full w-full scale-125"
+                  src="../assets/images/icons/eva_menu-fill.svg"
+                  alt="menu"
+                />
+              </button>
+            </div>
+          </div>
+          <div
+            class="transition-height bg-dark text-white duration-700"
+            :class="menuOpen ? 'h-[240px] overflow-y-scroll py-4' : 'h-[0px] overflow-hidden '"
+          >
+            <ul class="flex flex-col gap-4 font-helvetica">
+              <li class="text-center"><a href="#">News</a></li>
+              <li class="text-center"><a href="#">Workshop</a></li>
+              <li class="text-center"><a href="#">Podcast</a></li>
+              <li class="text-center"><a href="#">About</a></li>
+              <li class="flex justify-center gap-6">
+                <a href="#" title="twitter">
+                  <img
+                    class="h-full w-full scale-125"
+                    src="../assets/images/icons/carbon_logo-twitter_mobile.svg"
+                    alt="twitter"
+                  />
+                </a>
+                <a href="#" title="youtube">
+                  <img
+                    class="h-full w-full scale-125"
+                    src="../assets/images/icons/carbon_logo-youtube_mobile.svg"
+                    alt="youtube"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- EOL Mobile Navbar -->
+      </header>
+      <!-- EOL Header -->
+      <div id="content" class="mb-[225px] mt-6 grid grid-cols-12 gap-10">
+        <!-- BEGIN Left Side -->
+        <div class="col-span-full p-5 lg:col-span-8 lg:p-2">
+          <!-- BEGIN Section News -->
+          <h3 class="mb-8 text-2xl font-medium leading-7">News</h3>
+          <div
+            class="mb-8 grid grid-cols-1 gap-5 border-b border-secondary pb-8 lg:grid-cols-2"
+          >
+            <!-- BEGIN Item #1 -->
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <!-- EOL Item #1 -->
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+          </div>
+          <!-- EOL Section News -->
+          <!-- BEGIN Section Workshop -->
+          <h3 class="mb-8 text-2xl font-medium leading-7">Workshop</h3>
+          <div
+            class="mb-8 grid grid-cols-1 gap-5 border-b border-secondary pb-8 lg:grid-cols-2"
+          >
+            <!-- BEGIN Item #1 -->
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <!-- EOL Item #1 -->
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="relative mb-4 w-full pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover"
+                  src="../assets/images/posts/example.jpg"
+                  alt="img"
+                />
+              </div>
+              <h1 class="mb-2.5 text-2xl font-medium leading-8">
+                Adipisicing iusto pariatur deleniti itaque.
+              </h1>
+              <div class="font-helvetica">
+                <span class="text-secondary">Posted by:</span>
+                <span>Admin</span>
+              </div>
+            </div>
+          </div>
+          <!-- EOL Section News -->
+        </div>
+        <!-- EOL Left Side -->
+        <!-- BEGIN RIGHT Side -->
+        <div class="col-span-full p-5 lg:col-span-4 lg:p-2">
+          <h3 class="mb-8 text-2xl font-medium leading-7">Tweets</h3>
+          <div>RESERVED</div>
+        </div>
+        <!-- EOL RIGHT Side -->
+      </div>
+      <!-- BEGIN Footer -->
+      <footer class="mb-[55px]">
+        <div
+          class="mx-auto flex w-full max-w-[320px] flex-col content-center justify-center"
+        >
+          <div
+            class="mb-[20px] flex content-center justify-between font-medium"
+          >
+            <a href="#"> Disclaimer </a>
+            <a href="#"> Privacy Policy </a>
+            <a href="#"> Contact </a>
+          </div>
+          <div class="flex content-center justify-center">
+            <span>
+              <img
+                class="align-base mr-2 inline-block"
+                src="../assets/images/copyright.svg"
+                alt="copyright"
+              />
+              Copyright 2022 - OpenAI</span
+            >
+          </div>
+        </div>
+      </footer>
+      <!-- EOL Footer -->
+    </div>
+    <script>
+      const btnMenu = document.querySelector("#mobile-menu-btn")
+      const mobileMenu = document.querySelector("#mobile-menu")
+
+      btnMenu.addEventListener("click", () => {
+        mobileMenu.classList.toggle("h-0")
+        mobileMenu.classList.toggle("max-h-0")
+        mobileMenu.classList.toggle("h-auto")
+        mobileMenu.classList.toggle("max-h-auto")
+      })
+    </script>
+  </body>
+</html>

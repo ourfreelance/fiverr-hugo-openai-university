@@ -1,0 +1,11 @@
+<a
+  class="text-blue-600 hover:text-red-600"
+  href="{{ .Destination | safeURL }}"
+  title="{{ .Title | safeHTML }}"
+  {{- if strings.HasPrefix .Destination "http" }}
+    target="_blank"
+  {{ end -}}
+>
+  {{ .Text | safeHTML }}
+  {{ print ":arrow_upper_right:" | emojify }}
+</a>

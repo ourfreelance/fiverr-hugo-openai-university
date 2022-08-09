@@ -1,0 +1,44 @@
+{{- define "main" }}
+
+  <div id="content" class="my-8 px-5 lg:px-2">
+    <h3 class="mb-8 text-2xl font-medium leading-7">
+      {{- if eq .Kind "term" }}
+        Category - {{ .Title }}:
+        {{ .Paginator.PageNumber }}
+      {{- else }}
+        {{ .Title }}
+      {{ end -}}
+    </h3>
+    <div class="mb-8 grid grid-cols-1 gap-5 pb-8 lg:grid-cols-3">
+      {{- $paginator := .Paginate (where site.RegularPages "Section" "posts") -}}
+      {{- range $paginator.Pages }}
+        <!-- BEGIN Item #1 -->
+        <a class="group mb-3" href="{{ .RelPermalink }}">
+          {{- if .Params.thumbnail }}
+            <div class="relative mb-4 w-full overflow-hidden pb-[58%]">
+              <img
+                class="absolute inset-0 z-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-125"
+                src="/assets/images/{{ .Params.thumbnail }}"
+                alt="{{ .Title }}"
+              />
+            </div>
+          {{- end }}
+          <h1 class="mb-2.5 text-2xl font-medium leading-8">
+            {{ .Title }}
+          </h1>
+          <div class="font-helvetica">
+            <span class="text-secondary">Posted by:</span>
+            <span>{{ site.Params.author }}</span>
+          </div>
+        </a>
+      {{- else }}
+        <div class="ml-5 font-helvetica text-xl font-bold italic">
+          <span>No Post</span>
+        </div>
+      {{ end -}}
+    </div>
+  </div>
+  <div class="mb-[225px]">
+    {{ template "_internal/pagination.html" . }}
+  </div>
+{{ end -}}

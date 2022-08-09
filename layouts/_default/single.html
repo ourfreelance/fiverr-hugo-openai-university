@@ -1,0 +1,16 @@
+{{- define "main" }}
+
+  <div id="content" class="mb-[225px] mt-6">
+    <!-- BEGIN Article -->
+    <article class="mx-auto max-w-[630px]">
+      <h1 class="mt-20 mb-14 text-4xl font-medium leading-8">
+        {{ .Title }}
+      </h1>
+      <div class="font-helvetica leading-relaxed text-dark">
+        {{ .Content | safeHTML }}
+      </div>
+    </article>
+    <!-- EOL Article -->
+  </div>
+
+{{ end -}}

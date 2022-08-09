@@ -1,0 +1,133 @@
+{{- define "main" }}
+
+  <div id="content" class="mb-[225px] mt-6 grid grid-cols-12 gap-10">
+    <!-- BEGIN Left Side -->
+    <div class="col-span-full p-5 lg:col-span-8 lg:p-2">
+      <!-- BEGIN Section News -->
+      <h3 class="mb-8 text-2xl font-medium leading-7">News</h3>
+      <div
+        class="mb-8 grid grid-cols-1 gap-5 border-b border-secondary pb-8 lg:grid-cols-2"
+      >
+        {{ $postsNews := where site.RegularPages "Section" "posts" }}
+        {{ $postsNews = where $postsNews "Params.category" "intersect" (slice "News") }}
+        {{- range first 6 $postsNews }}
+          <!-- BEGIN Item #1 -->
+          <a class="group mb-3" href="{{ .RelPermalink }}">
+            {{- if .Params.thumbnail }}
+              <div class="relative mb-4 w-full overflow-hidden pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-125"
+                  src="/assets/images/{{ .Params.thumbnail }}"
+                  alt="{{ .Title }}"
+                />
+              </div>
+            {{- end }}
+            <h1 class="mb-2.5 text-2xl font-medium leading-8">
+              {{ .Title }}
+            </h1>
+            <div class="font-helvetica">
+              <span class="text-secondary">Posted by:</span>
+              <span>{{ site.Params.author }}</span>
+            </div>
+          </a>
+        {{- else }}
+          <div class="ml-5 font-helvetica text-xl font-bold italic">
+            <span>No Post</span>
+          </div>
+        {{ end -}}
+        <!-- EOL Item #1 -->
+      </div>
+      <!-- EOL Section News -->
+      <!-- BEGIN Section Workshop -->
+      <h3 class="mb-8 text-2xl font-medium leading-7">Workshop</h3>
+      <div
+        class="mb-8 grid grid-cols-1 gap-5 border-b border-secondary pb-8 lg:grid-cols-2"
+      >
+        {{ $postsWorkshop := where site.RegularPages "Section" "posts" }}
+        {{ $postsWorkshop = where $postsWorkshop "Params.category" "intersect" (slice "Workshop") }}
+        {{- range first 6 $postsWorkshop }}
+          <!-- BEGIN Item #1 -->
+          <a class="group mb-3" href="{{ .RelPermalink }}">
+            {{- if .Params.thumbnail }}
+              <div class="relative mb-4 w-full overflow-hidden pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-125"
+                  src="/assets/images/{{ .Params.thumbnail }}"
+                  alt="img"
+                />
+              </div>
+            {{- end }}
+            <h1 class="mb-2.5 text-2xl font-medium leading-8">
+              {{ .Title }}
+            </h1>
+            <div class="font-helvetica">
+              <span class="text-secondary">Posted by:</span>
+              <span>{{ site.Params.author }}</span>
+            </div>
+          </a>
+        {{- else }}
+          <div class="ml-5 font-helvetica text-xl font-bold italic">
+            <span>No Post</span>
+          </div>
+        {{ end -}}
+        <!-- EOL Item #1 -->
+      </div>
+      <!-- EOL Section Workshop -->
+      <!-- BEGIN Section Podcast -->
+      <h3 class="mb-8 text-2xl font-medium leading-7">Podcast</h3>
+      <div
+        class="mb-8 grid grid-cols-1 gap-5 border-b border-secondary pb-8 lg:grid-cols-2"
+      >
+        {{ $postsPodcast := where site.RegularPages "Section" "posts" }}
+        {{ $postsPodcast = where $postsPodcast "Params.category" "intersect" (slice "Podcast") }}
+        {{- range first 6 $postsPodcast }}
+          <!-- BEGIN Item #1 -->
+          <a class="group mb-3" href="{{ .RelPermalink }}">
+            {{- if .Params.thumbnail }}
+              <div class="relative mb-4 w-full overflow-hidden pb-[58%]">
+                <img
+                  class="absolute inset-0 z-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-125"
+                  src="/assets/images/{{ .Params.thumbnail }}"
+                  alt="img"
+                />
+              </div>
+            {{- end }}
+            <h1 class="mb-2.5 text-2xl font-medium leading-8">
+              {{ .Title }}
+            </h1>
+            <div class="font-helvetica">
+              <span class="text-secondary">Posted by:</span>
+              <span>{{ site.Params.author }}</span>
+            </div>
+          </a>
+        {{- else }}
+          <div class="ml-5 font-helvetica text-xl font-bold italic">
+            <span>No Post</span>
+          </div>
+        {{ end -}}
+        <!-- EOL Item #1 -->
+      </div>
+      <!-- EOL Section Podcast -->
+    </div>
+    <!-- EOL Left Side -->
+    <!-- BEGIN RIGHT Side -->
+    <div class="col-span-full p-5 lg:col-span-4 lg:p-2">
+      {{- if site.Params.twitter }}
+        <h3 class="mb-8 text-2xl font-medium leading-7">Tweets</h3>
+        <div>
+          <a
+            class="twitter-timeline"
+            href="https://twitter.com/OpenaiU?ref_src=twsrc%5Etfw"
+            >Tweets by OpenaiU</a
+          >
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+        </div>
+      {{ end -}}
+    </div>
+    <!-- EOL RIGHT Side -->
+  </div>
+{{ end -}}

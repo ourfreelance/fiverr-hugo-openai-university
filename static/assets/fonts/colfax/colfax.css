@@ -1,0 +1,91 @@
+/* colfax thin */
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-ThinItalic.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* colfax light */
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* colfax regular */
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-RegularItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* colfax medium */
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* colfax bold */
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* colfax black */
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-Black.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Colfax";
+  src: url("./Colfax-BlackItalic.otf") format("opentype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+

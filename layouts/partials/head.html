@@ -1,0 +1,232 @@
+<!-- DNS preconnect -->
+<meta http-equiv="x-dns-prefetch-control" content="on" />
+<link rel="preconnect" href="//ajax.googleapis.com" />
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin="anonymous"
+/>
+<link rel="preconnect" href="//cdnjs.cloudflare.com" />
+<link rel="preconnect" href="//www.googletagmanager.com" />
+<link rel="preconnect" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<link rel="dns-prefetch" href="//ajax.googleapis.com" />
+<link rel="dns-prefetch" href="//unpkg.com" />
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+<link rel="dns-prefetch" href="//www.googletagmanager.com" />
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//connect.facebook.net" />
+<link rel="dns-prefetch" href="//platform.linkedin.com" />
+<link rel="dns-prefetch" href="//platform.twitter.com" />
+
+<!-- base url -->
+{{- if or (eq site.BaseURL "/") (eq site.BaseURL "http://localhost:1313/") (eq site.BaseURL "http://examplesite.org/") (eq site.BaseURL "https://examplesite.org/") (eq site.BaseURL "http://examplesite.com/") (eq site.BaseURL "https://examplesite.com/") }}
+{{- else }}
+  <base href="{{ .Permalink }}" />
+{{ end -}}
+
+
+<title>
+  {{- if eq .RelPermalink "/" -}}
+    {{ site.Title }}
+  {{- else if eq .Section "tags" -}}
+    {{- .Title | humanize }} |
+    {{- printf " %s" site.Title }}
+  {{- else -}}
+    {{- .Title }} |
+    {{- printf " %s" site.Title }}
+  {{- end -}}
+</title>
+
+<!-- meta canonical -->
+<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+
+<!-- responsive meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- meta keywords -->
+{{- $description:= site.Params.metadata.description -}}
+{{- $keyword:= site.Params.metadata.keywords -}}
+{{- if .Params.seo_keyword -}}
+  <meta
+    name="keywords"
+    content="{{- if eq .RelPermalink "/" -}}
+      {{ delimit $keyword `, ` }},
+    {{- end -}}{{ delimit .Params.seo_keyword `, ` }}"
+  />
+{{ end -}}
+
+
+<!-- meta description -->
+{{- if .Params.seo_description -}}
+  <meta
+    name="description"
+    content="{{- if eq .RelPermalink "/" -}}
+      {{ $description }}
+    {{ end -}}{{ .Params.seo_description }}"
+  />
+{{ end -}}
+
+
+<!-- meta author -->
+{{- with site.Params.metadata.author }}
+  <meta name="author" content="{{ . }}" />
+{{ end -}}
+
+
+<!-- meta hugo version -->
+{{- hugo.Generator }}
+
+
+<!-- SEO meta -->
+<!-- opengraph -->
+<meta
+  property="og:title"
+  content="{{- with .Title -}}
+    {{ . }} |
+    {{- printf " %s" site.Title }}
+  {{- else }}
+    {{ site.Title }}
+  {{ end -}}"
+/>
+<meta
+  property="og:description"
+  content="{{- with .Params.seo_description -}}
+    {{ . }}
+  {{- else }}
+    {{- if .IsPage -}}
+      {{ .Summary }}
+    {{- else }}
+      {{- with $description }}{{ . }}{{ end -}}
+    {{ end -}}
+  {{ end -}}"
+/>
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<!-- twitter -->
+<meta
+  name="twitter:title"
+  content="{{- with .Title -}}
+    {{ . }} |
+    {{- printf " %s" site.Title }}
+  {{- else }}
+    {{ site.Title }}
+  {{ end -}}"
+/>
+<meta
+  name="twitter:description"
+  content="{{- with .Params.seo_description -}}
+    {{ . }}
+  {{- else }}
+    {{- if .IsPage -}}
+      {{ .Summary }}
+    {{- else }}
+      {{- with $description }}{{ . }}{{ end -}}
+    {{ end -}}
+  {{ end -}}"
+/>
+{{- with site.Params.social.twitter }}
+  <meta name="twitter:site" content="@{{ . }}" />
+{{ end -}}
+
+
+<!-- meta image -->
+{{- with .Params.thumbnail }}
+  {{- $imagePath := . -}}
+  {{- if or (hasPrefix $imagePath "http") (os.FileExists (add "static/assets/" (string $imagePath))) }}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="{{ $imagePath | absURL }}" />
+    <meta property="og:image" content="{{ $imagePath | absURL }}" />
+  {{- else }}
+    {{- $assetImage := os.FileExists (add "static/assets/" (string $imagePath)) -}}
+    {{- $image:= resources.Get $imagePath -}}
+    {{- if $assetImage }}
+      {{- $imageExt := path.Ext $imagePath -}}
+      {{- if ne $imageExt ".svg" }}
+        {{- $imageWidth := $image.Width -}}
+        {{- $imageHeight := $image.Height -}}
+        {{- if (and (gt $imageWidth 144) (gt $imageHeight 144)) }}
+          <meta
+            property="og:image"
+            content="{{ $image.RelPermalink | absURL }}"
+          />
+          <meta
+            property="og:image:secure_url"
+            content="{{ $image.RelPermalink | absURL }}"
+          />
+          <meta
+            name="twitter:image"
+            content="{{ $image.RelPermalink | absURL }}"
+          />
+          <meta
+            name="twitter:card"
+            content="summary{{- if (and (gt $imageWidth 300) (gt $imageHeight 157) (not (eq $imageWidth $imageHeight))) -}}
+              _large_image
+            {{- end -}}"
+          />
+        {{ end }}
+        <meta property="og:image:width" content="{{ $imageWidth }}" />
+        <meta property="og:image:height" content="{{ $imageHeight }}" />
+      {{ end -}}
+    {{ end -}}
+  {{ end -}}
+{{ end -}}
+
+
+<!-- main css & css bundle -->
+{{- $styles := slice -}}
+{{- $styles = $styles | append (resources.Get "css/styles.css") -}}
+<!-- syntax hightlight css -->
+{{- $styles = $styles | append (resources.Get "css/syntax.css") -}}
+{{- if hugo.IsProduction }}
+  {{- $styles = $styles | resources.Concat "css/all.css" | minify | fingerprint "sha512" -}}
+  <link
+    crossorigin="anonymous"
+    media="all"
+    rel="stylesheet"
+    href="{{ $styles.Permalink }}"
+    integrity="{{ $styles.Data.Integrity }}"
+  />
+{{- else }}
+  {{- $styles = $styles | resources.Concat "css/all.css" | minify -}}
+  <link
+    crossorigin="anonymous"
+    media="all"
+    rel="stylesheet"
+    href="{{ $styles.Permalink }}"
+  />
+{{ end -}}
+
+
+<!-- Fonts -->
+<link
+  rel="preload"
+  as="style"
+  type="text/css"
+  href="../assets/fonts/colfax/colfax.css"
+  media="all"
+  onload="this.rel='stylesheet'"
+/>
+<link
+  rel="preload"
+  as="style"
+  type="text/css"
+  href="../assets/fonts/helvetica/helvetica.css"
+  media="all"
+  onload="this.rel='stylesheet'"
+/>
+
+
+<!-- Google Analytics -->
+{{- if site.GoogleAnalytics }}
+  {{- template "_internal/google_analytics.html" . -}}
+{{ end -}}
+
+
+<!-- favicon -->
+{{- partial "images-favicon.html" . -}}
+
+
+<!-- AlpineJS -->
+<script src="//unpkg.com/alpinejs" defer></script>

@@ -1,0 +1,105 @@
+<!-- BEGIN Header -->
+<header>
+  <!-- BEGIN Desktop Navbar -->
+  <div
+    class="relative hidden flex-col content-center justify-center border-b border-secondary pb-6 lg:flex"
+  >
+    <div id="logo" class="mt-6 mb-8 flex justify-center">
+      <a href="/">
+        <img class="h-full w-full" src="/assets/images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <nav>
+      <ul class="justify-center gap-9 font-helvetica leading-5 lg:flex">
+        <li>
+          <a href="/category/news"> News </a>
+        </li>
+        <li>
+          <a href="/category/workshop"> Workshop </a>
+        </li>
+        <li>
+          <a href="/category/podcast"> Podcast </a>
+        </li>
+        <li>
+          <a href="/about"> About </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="absolute right-0 top-0 mt-7 hidden gap-6 lg:flex">
+      <a href="{{ site.Params.twitter }}" title="Follow on Twitter" target="_blank">
+        <img
+          class="h-full w-full scale-125"
+          src="/assets/images/icons/carbon_logo-twitter.svg"
+          alt="twitter"
+        />
+      </a>
+      <a href="{{ site.Params.twitter }}" title="Subscribe on YouTube" target="_blank">
+        <img
+          class="h-full w-full scale-125"
+          src="/assets/images/icons/carbon_logo-youtube.svg"
+          alt="youtube"
+        />
+      </a>
+    </div>
+  </div>
+  <!-- EOL Desktop Navbar -->
+  <!-- BEGIN Mobile Navbar -->
+  <div class="block lg:hidden" x-data="{ menuOpen: false }">
+    <div
+      class="mx-5 mt-4 flex content-center justify-between lg:hidden"
+      :class="!menuOpen && 'border-b border-secondary'"
+    >
+      <div id="logo" class="mt-2">
+        <a href="/">
+          <img
+            class="h-[22px] w-[118px]"
+            src="/assets/images/logo.png"
+            alt="logo"
+          />
+        </a>
+      </div>
+      <div class="mb-4">
+        <button
+          class="flex h-[34px] w-[37px] cursor-pointer content-center justify-center bg-dark p-[5px] outline-none"
+          @click="menuOpen = !menuOpen"
+        >
+          <img
+            class="h-full w-full scale-125"
+            src="/assets/images/icons/eva_menu-fill.svg"
+            alt="menu"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="transition-height bg-dark text-white duration-700"
+      :class="menuOpen ? 'h-[240px] overflow-y-scroll py-4' : 'h-[0px] overflow-hidden '"
+    >
+      <ul class="flex flex-col gap-4 font-helvetica">
+        <li class="text-center"><a href="/category/news">News</a></li>
+        <li class="text-center"><a href="/category/workshop">Workshop</a></li>
+        <li class="text-center"><a href="/category/podcast">Podcast</a></li>
+        <li class="text-center"><a href="/about">About</a></li>
+        <li class="flex justify-center gap-6">
+          <a href="{{ site.Params.twitter }}" title="Follow on Twitter" target="_blank">
+            <img
+              class="h-full w-full scale-125"
+              src="/assets/images/icons/carbon_logo-twitter_mobile.svg"
+              alt="twitter"
+            />
+          </a>
+          <a href="{{ site.Params.youtube }}" title="Subscribe on YouTube">
+            <img
+              class="h-full w-full scale-125"
+              src="/assets/images/icons/carbon_logo-youtube_mobile.svg"
+              alt="youtube"
+              target="_blank"
+            />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- EOL Mobile Navbar -->
+</header>
+<!-- EOL Header -->

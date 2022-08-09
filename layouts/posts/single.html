@@ -1,0 +1,42 @@
+{{- define "main" }}
+
+  <div id="content" class="mb-[225px] mt-6">
+    <!-- BEGIN Article -->
+    <article class="max-w-[630px] mx-auto">
+        <!-- BEGIN Thumbnail -->
+        {{- if .Params.thumbnail }}
+          <div class="relative mb-6 w-full pb-[58%]">
+            <img
+              class="absolute inset-0 z-0 h-full w-full object-cover"
+              src="/assets/images/{{ .Params.thumbnail }}"
+              alt="{{ .Title }}"
+            />
+          </div>
+        {{- end }}
+        <!-- EOL Thumbnail -->
+          <h1 class="mb-3.5 text-4xl font-medium leading-8">
+              Headling Article Post 1
+          </h1>
+          <div class="font-helvetica">
+            <span class="text-secondary">Posted by:</span>
+            <span>{{ site.Params.author }}</span>
+            -
+            <span class="text-secondary">{{ .Date | time.Format ":date_long" }}</span>
+          </div>
+          <div class="leading-relaxed my-9 font-helvetica text-dark">
+            {{ .Content | safeHTML }}
+          </div>
+    <!-- BEGIN Tags -->
+    <div class="flex flex-wrap gap-6">
+    {{- range $name := .Params.tags }}
+        <a href="/tags/{{ lower $name }}" class="bg-dark text-white font-helvetica px-3.5 py-2 flex justify-center content-center inline-block min-h-[40px]">
+            {{ $name }}
+        </a>
+    {{ end -}}
+    </div>
+    <!-- EOL Tags -->
+    </article>
+    <!-- EOL Article -->
+  </div>
+
+{{ end -}}
