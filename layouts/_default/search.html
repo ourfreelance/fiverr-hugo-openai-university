@@ -77,7 +77,7 @@
                     .then(function (result) {
                       localStorage.setItem(
                         "offlineindexExp",
-                        dateNow.addDays(3).getTime() / 1000
+                        dateNow.addDays(1).getTime() / 1000
                       );
                       localStorage.setItem("offlineindex", JSON.stringify(result));
                       searchGo(query);
