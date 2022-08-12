@@ -35,6 +35,10 @@ timeout = "300s"
   category = 'category'
   tag = 'tags'
 
+[outputs]
+  home          = ["html", "json"]
+  section          = ["html"]
+
 ####################
 # site params
 ####################
@@ -49,3 +53,23 @@ timeout = "300s"
   contact_url = "mailto:webmaster@website.com"
   twitter = "https://twitter.com/OpenaiU"
   youtube = "https://www.youtube.com/channel/UC-zakigu6Vkr2ssJILFQ-mQ"
+  github = "https://github.com/openai-university"
+
+####################
+# navbar menu
+####################
+[[menu.main]]
+name = "About"
+url = "/category/about"
+
+[[menu.main]]
+name = "News"
+url = "/category/news"
+
+[[menu.main]]
+name = "Podcast"
+url = "/category/podcast"
+
+[[menu.main]]
+name = "Workshop"
+url = "/category/workshop"

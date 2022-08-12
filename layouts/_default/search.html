@@ -1,0 +1,181 @@
+{{- define "main" }}
+
+  <div id="content" class="mb-[225px] mt-6 grid grid-cols-1 gap-10">
+    <!-- BEGIN Search -->
+    <div class="mx-auto max-w-[630px]">
+      <div class="p-5 lg:p-2">
+        <h3 class="mb-8 text-2xl font-medium leading-7">Search</h3>
+        <div id="search">
+          <form method="get" accept-charset="utf-8">
+            <div class="content-center mb-4 flex flex-col">
+              <div class="form-outline mb-2 font-bold">
+                Keywords:
+                <input
+                  type="text"
+                  value=""
+                  name="q"
+                  id="searchquery"
+                  class=" max-w-[80%] border-b border-secondary px-2 py-1.5 pb-2 text-black transition focus:outline-none"
+                  placeholder="search keywords"
+                  autofocus
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div id="result" class="p-3 font-helvetica md:p-5">Loading . . .</div>
+            <script>
+              Date.prototype.addDays = function (days) {
+                let date = new Date(this.valueOf());
+                date.setDate(date.getDate() + days);
+                return date;
+              }; // https://stackoverflow.com/a/563442/15151995
+
+              let dateNow = new Date();
+              let match = window.location.href.match(/\?q=([^&]+)/);
+
+              if (match) {
+                let query = decodeURIComponent(match[1].replace(/\+/g, " "));
+                document.getElementById("searchquery").value = query;
+
+                window.onload = function () {
+                  setTimeout(function () {
+                    searchGo(query);
+                  }, 1500);
+                };
+              } else {
+                window.onload = function () {
+                  setTimeout(function () {
+                    searchGo();
+                  }, 1500);
+                };
+              }
+
+              let forceFetch = function (query) {
+                console.log("Renew offline index");
+                localStorage.removeItem("offlineindexExp");
+                localStorage.removeItem("offlineindex");
+                searchGo("query");
+              };
+
+              let fetchIndexJSON = function (url, limit, count) {
+                count = Math.max(count || 0, 0);
+                return fetch(url).then(function (res) {
+                  console.log(res.status);
+                  if (res.status !== 200 && count < limit) {
+                    console.log("TRY: ", count + 1);
+                    return fetchIndexJSON(url, limit, count + 1);
+                  } else {
+                    return res.json();
+                  }
+                });
+              };
+
+              function searchGo(query) {
+                if (localStorage.getItem("offlineindex") === null) {
+                  fetchIndexJSON("{{ .Site.BaseURL }}index.json", 39, 0)
+                    .then(function (result) {
+                      localStorage.setItem(
+                        "offlineindexExp",
+                        dateNow.addDays(3).getTime() / 1000
+                      );
+                      localStorage.setItem("offlineindex", JSON.stringify(result));
+                      searchGo(query);
+                    })
+                    .catch(function (err) {
+                      console.log("Failed to fetch data!");
+                    });
+                } else {
+                  if (
+                    dateNow.getTime() / 1000 >
+                    localStorage.getItem("offlineindexExp")
+                  ) {
+                    forceFetch(query);
+                  } else {
+                    let indexer = JSON.parse(localStorage.getItem("offlineindex"));
+
+                    let options = {
+                      // fuse.js
+                      tokenize: true,
+                      isCaseSensitive: false,
+                      shouldSort: true,
+                      location: 0,
+                      distance: 2800,
+                      threshold: 0.2,
+                      minMatchCharLength: 2,
+                      keys: ["title", "tags", "category", "permalink"],
+                    };
+                    let fuse = new Fuse(indexer, options);
+
+                    if (query) {
+                      let searchresult = fuse.search(query);
+                      let searchshow = "";
+                      if (searchresult.length === 0) {
+                        console.log("No result");
+                        searchshow =
+                          '<h3 class="font-medium text-lg">No result</h3><br/>';
+                      } else {
+                        console.log("Found result");
+                        searchshow = '<h3 class="font-medium text-lg">Result: </h3><br/>';
+                        for (let item in searchresult.slice(0, 25)) {
+                          searchshow =
+                            searchshow +
+                            '<li class="border-b-2 mb-4 hover:text-blue-600" style="list-style-type: none !important">' +
+                            (parseInt(item) + 1) +
+                            '. <a href="' +
+                            searchresult[item].item.permalink +
+                            '" class="font-bold">' +
+                            searchresult[item].item.title +
+                            '</a><br/><span class="font-helvetica"><span class="font-bold">Category</span> &colon; ' +
+                            searchresult[item].item.category +
+                            '</span></li>';
+                        }
+                      }
+                      document.getElementById("result").innerHTML = searchshow;
+                    } else {
+                      console.log("No result");
+                      searchshow = '<h3 class="font-medium text-lg">No result</h3><br/>';
+                      document.getElementById("result").innerHTML = searchshow;
+                    }
+                    document
+                      .getElementById("searchquery")
+                      .addEventListener("input", function (evt) {
+                        let searchresult = fuse.search(this.value);
+                        let searchshow = "";
+                        if (searchresult.length === 0) {
+                          console.log("No result");
+                          searchshow =
+                            '<h3 class="font-medium text-lg">No result</h3><br/>';
+                        } else {
+                          console.log("Found result");
+                          searchshow = '<h3 class="font-medium text-lg">Result: </h3><br/>';
+                          for (let item in searchresult.slice(0, 25)) {
+                            searchshow =
+                              searchshow +
+                              '<li class="border-b-2 mb-4 hover:text-blue-600" style="list-style-type: none !important">' +
+                              (parseInt(item) + 1) +
+                              '. <a href="' +
+                              searchresult[item].item.permalink +
+                              '" class="font-bold">' +
+                              searchresult[item].item.title +
+                              '</a><br/><span class="font-helvetica"><span class="font-bold">Category</span> &colon; ' +
+                              searchresult[item].item.category +
+                              '</span></li>';
+                          }
+                        }
+                        document.getElementById("result").innerHTML = searchshow;
+                        history.pushState(
+                          {},
+                          null,
+                          "?q=" + this.value.replace(/\ /g, "+")
+                        );
+                      });
+                  }
+                }
+              }
+            </script>
+      </div>
+    </div>
+    <!-- EOL Search -->
+  </div>
+{{ end -}}

@@ -1,6 +1,9 @@
 {{- define "main" }}
 
-  <div id="content" class="mb-[225px] mt-6 grid grid-cols-1 lg:grid-cols-12 gap-10">
+  <div
+    id="content"
+    class="mb-[225px] mt-6 grid grid-cols-1 gap-10 lg:grid-cols-12"
+  >
     <!-- BEGIN Left Side -->
     <div class="col-span-full p-5 lg:col-span-8 lg:p-2">
       <!-- BEGIN Section News -->
@@ -47,7 +50,11 @@
         {{ $postsWorkshop = where $postsWorkshop "Params.category" "intersect" (slice "Workshop") }}
         {{- range first 6 $postsWorkshop }}
           <!-- BEGIN Item #1 -->
-          <a class="group mb-3" href="{{ .Params.youtube_url }}" target="_blank">
+          <a
+            class="group mb-3"
+            href="{{ .Params.youtube_url }}"
+            target="_blank"
+          >
             {{- if .Params.thumbnail }}
               <div class="relative mb-4 w-full overflow-hidden pb-[58%]">
                 <img
@@ -82,7 +89,11 @@
         {{ $postsPodcast = where $postsPodcast "Params.category" "intersect" (slice "Podcast") }}
         {{- range first 6 $postsPodcast }}
           <!-- BEGIN Item #1 -->
-          <a class="group mb-3" href="{{ .Params.youtube_url }}" target="_blank">
+          <a
+            class="group mb-3"
+            href="{{ .Params.youtube_url }}"
+            target="_blank"
+          >
             {{- if .Params.thumbnail }}
               <div class="relative mb-4 w-full overflow-hidden pb-[58%]">
                 <img
@@ -112,21 +123,73 @@
     <!-- EOL Left Side -->
     <!-- BEGIN RIGHT Side -->
     <div class="col-span-full p-5 lg:col-span-4 lg:p-2">
-      {{- if site.Params.twitter }}
-        <h3 class="mb-8 text-2xl font-medium leading-7">Tweets</h3>
+      <!-- BEGIN Section Search -->
+      <div class="mb-12">
+        <h3 class="mb-8 text-2xl font-medium leading-7">Search</h3>
         <div>
-          <a
-            class="twitter-timeline"
-            href="https://twitter.com/OpenaiU?ref_src=twsrc%5Etfw"
-            >Tweets by OpenaiU</a
-          >
-          <script
-            async
-            src="https://platform.twitter.com/widgets.js"
-            charset="utf-8"
-          ></script>
+          <form action="/search/" method="get">
+            <div class="flex flex-wrap gap-5 font-bold">
+              <input
+                type="text"
+                value=""
+                name="q"
+                id="searchquery"
+                class="border-b border-secondary px-2 py-1.5 pb-2 text-black transition focus:outline-none"
+                placeholder="search keywords"
+                autofocus
+              />
+              <button
+                class="bg-black px-5 py-2 font-helvetica font-bold text-white"
+              >
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- EOL Section Search -->
+      <!-- BEGIN Section Twitter -->
+      {{- if site.Params.twitter }}
+        <div class="mb-12">
+          <h3 class="mb-8 text-2xl font-medium leading-7">Tweets</h3>
+          <div>
+            <a
+              class="twitter-timeline"
+              href="https://twitter.com/OpenaiU?ref_src=twsrc%5Etfw"
+              >Tweets by OpenaiU</a
+            >
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+          </div>
         </div>
       {{ end -}}
+      <!-- EOL Section Twitter -->
+      <!-- BEGIN Section Latest Podcasts -->
+      <div>
+        <h3 class="mb-8 text-2xl font-medium leading-7">Podcasts</h3>
+        <ul class="flex flex-col gap-3">
+          {{ $postsPodcast := where site.RegularPages "Section" "posts" }}
+          {{ $postsPodcast = where $postsPodcast "Params.category" "intersect" (slice "Podcast") }}
+          {{- range first 6 $postsPodcast }}
+            <li class="border-b border-secondary border-opacity-[.25] pb-2">
+              <a>
+                <h1 class="text-lg font-medium leading-8">
+                  {{ .Title }}
+                </h1>
+                <div class="font-helvetica">
+                  <span class="text-secondary"
+                    >{{ .Date | time.Format ":date_long" }}</span
+                  >
+                </div>
+              </a>
+            </li>
+          {{ end -}}
+        </ul>
+      </div>
+      <!-- EOL Section Latest Podcasts -->
     </div>
     <!-- EOL RIGHT Side -->
   </div>
