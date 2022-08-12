@@ -152,10 +152,10 @@
       {{- if site.Params.twitter }}
         <div class="mb-12">
           <h3 class="mb-8 text-2xl font-medium leading-7">Tweets</h3>
-          <div>
+          <div class="max-h-[560px] overflow-y-scroll">
             <a
               class="twitter-timeline"
-              href="https://twitter.com/OpenaiU?ref_src=twsrc%5Etfw"
+              href="{{ site.Params.twitter }}?ref_src=twsrc%5Etfw"
               >Tweets by OpenaiU</a
             >
             <script
