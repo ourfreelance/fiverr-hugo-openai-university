@@ -30,7 +30,7 @@
 <title>
   {{- if eq .RelPermalink "/" -}}
     {{ site.Title }}
-  {{- else if eq .Section "tags" -}}
+  {{- else if or (eq .Section "tags") (eq .Section "category") -}}
     {{- .Title | humanize }} |
     {{- printf " %s" site.Title }}
   {{- else -}}
