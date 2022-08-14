@@ -13,7 +13,15 @@
       {{- $paginator := .Paginate (where site.RegularPages "Section" "posts") -}}
       {{- range $paginator.Pages }}
         <!-- BEGIN Item #1 -->
-        <a class="group mb-3" href="{{ .Params.youtube_url }}" target="_blank">
+        <a
+          class="group mb-3"
+          href="{{ if .Params.youtube_url }}
+            {{ .Params.youtube_url }}
+          {{ else }}
+            {{ .RelPermalink }}
+          {{ end }}"
+          target="_blank"
+        >
           {{- if .Params.thumbnail }}
             <div class="relative mb-4 w-full overflow-hidden pb-[58%]">
               <img
